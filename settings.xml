@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <servers>
+    <server>
+        <id>exampleCompany</id>
+        <username>privateUserName</username>
+        <password>privatePassword</password>
+    </server>
+  </servers>
+
+  <mirrors>
+  </mirrors>
+
+
+  <profiles>
+    <profile>
+      <id>exampleCompany</id>
+      <repositories>
+        <repository>
+          <id>exampleCompany</id>
+          <name>ExampleCompany Nexus Repository</name>
+          <url>https://nexus.example.com/music/content/groups/public</url>
+          <layout>default</layout>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>daily</updatePolicy>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
+          </snapshots>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>exampleCompany</id>
+          <name>Example Nexus Repository</name>
+          <url>https://nexus.example.com/music/content/groups/public</url>
+          <layout>default</layout>
+            <releases>
+              <enabled>true</enabled>
+              <updatePolicy>daily</updatePolicy>
+            </releases>
+            <snapshots>
+              <enabled>true</enabled>
+              <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <!-- <activeProfile>example</activeProfile> -->
+  </activeProfiles>
+
+</settings>

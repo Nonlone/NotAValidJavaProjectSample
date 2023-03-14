@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.example.commons</groupId>
+        <artifactId>commons-app-parent</artifactId>
+        <version>1.2.0</version>
+    </parent>
+
+    <groupId>com.example.someapp</groupId>
+    <artifactId>someapp</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>someapp-api</module>
+        <module>someapp-app</module>
+    </modules>
+
+    <properties>
+        <!-- version config -->
+        <commons-bom.version>2022.11.25-1</commons-bom.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.example.commons</groupId>
+            <artifactId>example-commons-starter</artifactId>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.example.commons</groupId>
+                <artifactId>commons-bom</artifactId>
+                <version>${commons-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.5</version>
+                <configuration>
+                    <includes>
+                        <include>com/**/*</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/domain/**/*.class</exclude>
+                        <exclude>**/mapping/**/*.class</exclude>
+                        <exclude>**/request/**/*.class</exclude>
+                        <exclude>**/response/**/*.class</exclude>
+                        <exclude>**/constant/**/*.class</exclude>
+                        <exclude>**/constants/**/*.class</exclude>
+                        <exclude>**/exception/**/*.class</exclude>
+                        <exclude>**/model/**/*.class</exclude>
+                        <exclude>**/dto/**/*.class</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>pre-test</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
